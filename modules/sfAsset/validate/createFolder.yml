@@ -1,0 +1,11 @@
+fillin:
+  enabled: on
+
+fields:
+  name:
+    required:
+      msg:          The name field cannot be left blank
+    sfRegexValidator:
+      match:        yes
+      pattern:      /^[a-zA-Z0-9\-\_\.]+$/
+      match_error:  Folder names must contain only letters and numbers

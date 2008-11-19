@@ -1,0 +1,30 @@
+propel:
+  _attributes:    { package: plugins.sfAssetsLibraryPlugin.lib.model }
+
+  sf_asset_folder:
+    _attributes:      { phpName: sfAssetFolder, package: plugins.sfAssetsLibraryPlugin.lib.model }
+    id:
+    tree_left:        { type: integer, required: true }
+    tree_right:       { type: integer, required: true }
+    tree_parent:      integer
+    static_scope:     integer
+    name:             varchar(255)
+    relative_path:    varchar(255)
+    created_at:
+    updated_at:
+    _uniques:
+      uk_relative_path: [relative_path]
+
+  sf_asset:
+    _attributes:      { phpName: sfAsset, package: plugins.sfAssetsLibraryPlugin.lib.model }
+    id:
+    folder_id:        { type: integer, foreignTable: sf_asset_folder, foreignReference: id, required: true, onDelete: CASCADE, onUpdate: CASCADE }
+    filename:         varchar(255)
+    description:      longvarchar
+    author:           varchar(255)
+    copyright:        varchar(100)
+    type:             varchar(10)
+    filesize:         integer
+    created_at:
+    _uniques:
+      uk_folder_filename: [folder_id, filename]
