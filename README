@@ -201,9 +201,10 @@ TODO
 Changelog
 ---------
 
-### 2009-03-16 | Trunk
+### 2009-03-16 | 0.8.3 Stable
 
   * francois: Converted README to Markdown
+  * francois: Added missing file in `package.xml`
 
 ### 2008-06-23 | 0.8.2 Beta
 
