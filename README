@@ -178,7 +178,7 @@ Using the `sfAssetsLibraryPlugin`, you can change this control into some sort of
     [php]
     <?php use_helper('sfAsset') ?>
     <?php echo form_tag('foo/bar') ?>
-      <?php echo input_sf_asset_tag('my_asset_field', *) ?>
+      <?php echo input_sf_asset_tag('my_asset_field', '') ?>
     </form>
     
 This input is not a real file input tag, meaning that the chosen asset file will not be posted with the request. Instead, the action will be able to retrieve the asset file path relative to the web root, exactly what is needed to display it. Incidentally, this means that your form doesn't need to be set multipart.
