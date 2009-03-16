@@ -27,6 +27,7 @@ function run_sfassetlibrary_synchronize($task, $args, $options)
     throw new Exception('You must define a sychronization folder');
   }
   $base_folder = $args[1];
+  $env = isset($args[2]) ? $args[2] : 'dev';
   $verbose = array_key_exists('notVerbose', $options) ? false : true;
   $removeOrphanAssets = array_key_exists('removeOrphanAssets', $options) ? true : false;
   $removeOrphanFolders = array_key_exists('removeOrphanFolders', $options) ? true : false;
@@ -34,7 +35,7 @@ function run_sfassetlibrary_synchronize($task, $args, $options)
   // define constants
   define('SF_ROOT_DIR',    sfConfig::get('sf_root_dir'));
   define('SF_APP', $app);
-  define('SF_ENVIRONMENT', 'dev');
+  define('SF_ENVIRONMENT', $env);
   define('SF_DEBUG',       true);
   // get configuration
   require_once SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php';
