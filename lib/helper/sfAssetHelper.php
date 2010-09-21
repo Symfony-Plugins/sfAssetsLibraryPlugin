@@ -10,7 +10,7 @@ function auto_wrap_text($text)
 
 /**
  * Gives an image tag for an asset
- * 
+ *
  * @param sfAsset $asset
  * @param string $thumbnail_type
  * @param bool $file_system
@@ -85,6 +85,9 @@ function link_to_asset_action($text, $asset)
       case 2:
         // popup called from a simple form input (or via input_sf_asset_tag)
         return link_to_function($text, "setImageField('".$asset->getUrl()."')");
+      case 3:
+        // popup called from a Rich Text Editor (ex: CK Editor)
+        return link_to_function($text, "window.opener.CKEDITOR.tools.callFunction('".$user->getAttribute('func', 1, 'sf_admin/sf_asset/navigation')."', '" . $asset->getUrl() . "'); window.close()");
     }
   }
   else
@@ -137,8 +140,8 @@ function input_sf_asset_tag($name, $value, $options = array())
   // The popup should open in the currently selected subdirectory
   $html  = input_tag($name, $value, $options) . '&nbsp;';
   $html .= image_tag('/sfAssetsLibraryPlugin/images/folder_open', array(
-    'alt' => __('Insert Image'), 
-    'style' => 'cursor: pointer; vertical-align: middle', 
+    'alt' => __('Insert Image'),
+    'style' => 'cursor: pointer; vertical-align: middle',
     'onclick' => "
       initialDir = document.getElementById('".$options['id']."').value.replace(/\/[^\/]*$/, '');
       if(!initialDir) initialDir = '".sfConfig::get('app_sfAssetsLibrary_upload_dir', 'media')."';
